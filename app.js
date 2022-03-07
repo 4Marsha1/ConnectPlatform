@@ -1,18 +1,23 @@
 const express = require('express');
-const mongoose = require('mongoose')
+const connectDB = require('./config/db')
 
 const port = process.env.PORT || 5000
 const app = express();
-const mongoURI = 'mongodb+srv://4Marsha1:test1234@connectplatform.vfarl.mongodb.net/ConnectPlatform?retryWrites=true&w=majority'
 
-mongoose.connect(mongoURI)
-    .then(() => {
-        console.log('Successfully Connected database');
-        app.listen(port, () => {
-            console.log(`Server listening on port ${port}`);
-        })
-    })
+// Connect to database
+connectDB();
 
+// Default Route
 app.get('/', (req, res) => {
     res.send('Hello from server')
+})
+
+// Define Routes
+app.use('/api/auth', require('./routes/api/auth'))
+app.use('/api/users', require('./routes/api/users'))
+app.use('/api/profile', require('./routes/api/profile'))
+app.use('/api/posts', require('./routes/api/posts'))
+
+app.listen(port, () => {
+    console.log(`Server listening on port ${port}`);
 })
