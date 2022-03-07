@@ -7,6 +7,7 @@ delete posts and comments too.
 # MERN App
 
 ## CRUD Operations
+## Authentication using JWT
 
 # Dependencies
 
