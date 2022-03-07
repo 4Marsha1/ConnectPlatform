@@ -7,6 +7,9 @@ const app = express();
 // Connect to database
 connectDB();
 
+// Init Moddleware
+app.use(express.json({ extended: false }))
+
 // Default Route
 app.get('/', (req, res) => {
     res.send('Hello from server')
