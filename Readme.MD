@@ -13,23 +13,17 @@ delete posts and comments too.
 
 ## Backend
 
-### mongoose
-
-### express
-
-### cors
-
-### body-parser
+1. mongoose
+2. express
+3. cors
+4. body-parser
 
 ## Frontend
 
-### redux
-
-### react-redux
-
-### redux-thunk
-
-### redux-devtools-extension
+1. redux
+2. react-redux
+3. redux-thunk
+4. redux-devtools-extension
 
 # Starting the server
 
