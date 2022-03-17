@@ -69,7 +69,7 @@ const updateProfile = asyncHandler(async (req, res) => {
 // @Desc        Add Experiences
 // @Access      PRIVATE
 const addExperiences = asyncHandler(async (req, res) => {
-    const { title, company, location, from, to, current, desc } = req.body;
+    const { title, company, location, from, to, current, description } = req.body;
     if (!title || !company || !location || !from || !to) {
         res.status(400);
         throw new Error('Incomplete Fields')
@@ -80,15 +80,13 @@ const addExperiences = asyncHandler(async (req, res) => {
             res.status(400)
             throw new Error('Profile not found')
         }
-        const experiences = {
-            title, company, location, from, to, current, desc
-        }
+        const experiences = { title, company, location, from, to, current, description }
         profile.experiences.unshift(experiences);
         await profile.save();
         res.status(200).json(profile);
     } catch (err) {
         res.status(400);
-        throw new Error("Profile updation Failed!")
+        throw new Error("Couldn't add experience")
     }
 })
 
@@ -110,6 +108,52 @@ const deleteExperiences = asyncHandler(async (req, res) => {
     } catch (error) {
         res.status(400);
         throw new Error("Couldn't delete experience")
+    }
+})
+
+// @Route       POST /api/profile/education
+// @Desc        Add Education
+// @Access      PRIVATE
+const addEducation = asyncHandler(async (req, res) => {
+    const { school, degree, fieldofstudy, from, to, current, description } = req.body;
+    if (!school || !degree || !fieldofstudy || !from || !to) {
+        res.status(400);
+        throw new Error('Incomplete Fields!')
+    }
+    try {
+        const profile = await Profile.findOne({ user: req.user.id })
+        if (!profile) {
+            res.status(400);
+            throw new Error("Profile doesn't exist")
+        }
+        const education = { school, degree, fieldofstudy, from, to, current, description };
+        profile.educations.unshift(education);
+        await profile.save();
+        res.status(200).json(profile)
+    } catch (err) {
+        res.status(400);
+        throw new Error("Couldn't add education")
+    }
+})
+
+// @Route       DELETE /api/profile/education/:id
+// @Desc        Delete Education
+// @Access      PRIVATE
+const deleteEducation = asyncHandler(async (req, res) => {
+    const id = req.params.id
+    try {
+        const profile = await Profile.findOne({ user: req.user.id })
+        if (!profile) {
+            res.status(400);
+            throw new Error("Profile doesn't exist")
+        }
+        const eduIndex = profile.educations.map(edu => edu.id).indexOf(id)
+        profile.educations.splice(eduIndex, 1);
+        await profile.save();
+        res.status(200).json(profile)
+    } catch (err) {
+        res.status(400);
+        throw new Error("Couldn't add education")
     }
 })
 
@@ -167,6 +211,8 @@ module.exports = {
     updateProfile,
     addExperiences,
     deleteExperiences,
+    addEducation,
+    deleteEducation,
     getAllProfiles,
     getProfileById,
     deleteProfile
