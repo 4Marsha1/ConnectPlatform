@@ -22,7 +22,8 @@ app.get('/', (req, res) => {
 
 // ROUTES
 app.use('/api/users/', require('./routes/userRoutes'));
-app.use('/api/profile/', require('./routes/profileRoutes'))
+app.use('/api/profile/', require('./routes/profileRoutes'));
+app.use('/api/posts/', require('./routes/postRoutes'));
 
 // CUSTOM ERROR HANDLER
 app.use(errorHandler);
