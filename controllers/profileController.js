@@ -65,6 +65,54 @@ const updateProfile = asyncHandler(async (req, res) => {
     }
 })
 
+// @Route       POST /api/profile/experiences
+// @Desc        Add Experiences
+// @Access      PRIVATE
+const addExperiences = asyncHandler(async (req, res) => {
+    const { title, company, location, from, to, current, desc } = req.body;
+    if (!title || !company || !location || !from || !to) {
+        res.status(400);
+        throw new Error('Incomplete Fields')
+    }
+    try {
+        const profile = await Profile.findOne({ user: req.user.id });
+        if (!profile) {
+            res.status(400)
+            throw new Error('Profile not found')
+        }
+        const experiences = {
+            title, company, location, from, to, current, desc
+        }
+        profile.experiences.unshift(experiences);
+        await profile.save();
+        res.status(200).json(profile);
+    } catch (err) {
+        res.status(400);
+        throw new Error("Profile updation Failed!")
+    }
+})
+
+// @Route       DELETE /api/profile/experiences/:id
+// @Desc        Delete Experience
+// @Access      PRIVATE
+const deleteExperiences = asyncHandler(async (req, res) => {
+    const id = req.params.id;
+    try {
+        const profile = await Profile.findOne({ user: req.user.id });
+        if (!profile) {
+            res.status(400);
+            throw new Error("Profile doesn't exist")
+        }
+        const expIndex = profile.experiences.map(expe => expe.id).indexOf(id);
+        profile.experiences.splice(expIndex, 1);
+        await profile.save();
+        res.status(200).json(profile)
+    } catch (error) {
+        res.status(400);
+        throw new Error("Couldn't delete experience")
+    }
+})
+
 // @Route       GET /api/profile/all
 // @Desc        Get all profiles
 // @Access      PUBLIC
@@ -117,6 +165,8 @@ const deleteProfile = asyncHandler(async (req, res) => {
 module.exports = {
     getProfile,
     updateProfile,
+    addExperiences,
+    deleteExperiences,
     getAllProfiles,
     getProfileById,
     deleteProfile
