@@ -1,4 +1,5 @@
 const asyncHandler = require('express-async-handler');
+const request = require('request');
 const Profile = require('../models/profileModel');
 const User = require('../models/userModel');
 
@@ -206,6 +207,33 @@ const deleteProfile = asyncHandler(async (req, res) => {
     }
 })
 
+// @Route       GET /api/profile/github/:username
+// @Desc        Get Github repos
+// @Access      PUBLIC
+const getGithubRepos = asyncHandler(async (req, res) => {
+    try {
+        const options = {
+            uri: `https://api.github.com/users/${req.params.username}/repos?per_page=5&sort=created:asc&client_id=${process.env.GITHUB_CLIENTID
+                }&client_secret=${process.env.GITHUB_SECRET}`,
+            method: 'GET',
+            headers: { 'user-agent': 'nodejs' }
+        }
+        request(options, (error, response, body) => {
+            if (error) {
+                console.log(error);
+            }
+            if (response.statusCode !== 200) {
+                res.status(404);
+                throw new Error('Github repos fetch failed!')
+            }
+            res.status(200).json(JSON.parse(body))
+        })
+    } catch (err) {
+        res.status(400)
+        throw new Error("Couldn't Fetch Github repos")
+    }
+})
+
 module.exports = {
     getProfile,
     updateProfile,
@@ -215,5 +243,6 @@ module.exports = {
     deleteEducation,
     getAllProfiles,
     getProfileById,
-    deleteProfile
+    deleteProfile,
+    getGithubRepos
 }
