@@ -103,7 +103,7 @@ const likePost = asyncHandler(async (req, res) => {
     }
 })
 
-// @Route           POST /api/posts/unlike/:id
+// @Route           DELETE /api/posts/like/:id
 // @Desc            Unlike Post
 // @Access          PRIvATE
 const unlikePost = asyncHandler(async (req, res) => {
@@ -124,11 +124,74 @@ const unlikePost = asyncHandler(async (req, res) => {
     }
 })
 
+// @Route           POST /api/posts/comment/:id
+// @Desc            Add Comment on Post
+// @Access          PRIVATE
+const addComment = asyncHandler(async (req, res) => {
+    const { text } = req.body;
+    if (!text) {
+        res.status(400);
+        throw new Error("No comment text")
+    }
+    const id = req.params.id;
+    try {
+        const post = await Post.findById(id);
+        if (!post) {
+            res.status(400);
+            throw new Error('Post Not Found')
+        }
+        post.comments.unshift({
+            user: req.user.id,
+            name: req.user.name,
+            text,
+            avatar: req.user.avatar
+        });
+        await post.save();
+        res.status(200).json(post);
+    } catch (err) {
+        res.status(400);
+        throw new Error('Comment failed')
+    }
+})
+
+// @Route           DELETE /api/posts/comment/:id/:comment_id
+// @Desc            Delete Comment
+// @Access          PRIVATE
+const deleteComment = asyncHandler(async (req, res) => {
+    const id = req.params.id;
+    const comment_id = req.params.comment_id;
+    try {
+        const post = await Post.findById(id);
+        if (!post) {
+            res.status(400);
+            throw new Error('Post Not Found')
+        }
+        const comment = post.comments.filter(com => com.id === comment_id);
+        if (!comment) {
+            res.status(400);
+            throw new Error('Comment Not Found')
+        }
+        // if (comment.user.toString() !== req.user._id) {
+        //     res.status(400);
+        //     throw new Error('User Unauthorized')
+        // }
+        const commentIdx = post.comments.map(com => com.id).indexOf(comment_id);
+        post.comments.splice(commentIdx, 1);
+        await post.save();
+        res.status(200).json(post);
+    } catch (err) {
+        res.status(400);
+        throw new Error('delete comment failed')
+    }
+})
+
 module.exports = {
     createPost,
     getAllPosts,
     getPost,
     deletePost,
     likePost,
-    unlikePost
+    unlikePost,
+    addComment,
+    deleteComment
 }
