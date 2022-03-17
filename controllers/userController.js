@@ -82,24 +82,6 @@ const loginUser = asyncHandler(async (req, res) => {
     }
 })
 
-// @Route           GET /api/users/me
-// @Desc            Load user data
-// @Access          PRIVATE
-const getUser = asyncHandler(async (req, res) => {
-    try {
-        if (req.user) {
-            res.json({
-                name: req.user.name,
-                email: req.user.email,
-                avatar: req.user.avatar,
-            })
-        }
-    } catch (error) {
-        res.status(400);
-        throw new Error("Couldn't get User Details!")
-    }
-})
-
 const generateToken = (id) => {
     return jwt.sign({ id }, process.env.JWT_SECRET, { expiresIn: '60d' })
 }
@@ -107,5 +89,4 @@ const generateToken = (id) => {
 module.exports = {
     registerUser,
     loginUser,
-    getUser
 }
