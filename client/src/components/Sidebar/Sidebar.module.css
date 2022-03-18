@@ -1,0 +1,45 @@
+.sidebar{
+    position: absolute;
+    z-index: 100;
+    top: 0;
+    right: 0;
+    background-color: #f2f4f5;
+    height: 100vh;
+    width: 55%;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+.close{
+    background-color: none;
+    color: black;
+    font-size: 1.8rem;
+    font-weight: 500;
+    border: none;
+    cursor: pointer;
+}
+.links{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 1rem;
+    width: 100%;
+}
+.link{
+    font-size: 1.4rem;
+    font-weight: 600;
+}
+.copyright{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    width: 100%;
+}
+.copyright>span{
+    font-size: 1rem;
+    color: rgb(148, 145, 145);
+    font-weight: 600;
+}
