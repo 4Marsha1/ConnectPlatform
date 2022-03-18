@@ -1,0 +1,22 @@
+.container{
+    position: absolute;
+    left: 50;
+    top: 120px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.alert{
+    width: 300px;
+    text-align: center;
+    font-weight: 500;
+    padding: 0.2rem 1rem;
+}
+.SUCCESS{
+    background-color:  rgb(0,255,0);
+}
+.FAILED{
+    background-color:  rgb(255,0,0);
+    color: white;
+}

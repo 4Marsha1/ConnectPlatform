@@ -2,8 +2,11 @@ import styles from './Auth.module.css'
 import { Link } from 'react-router-dom'
 import { ReactComponent as UserSVG } from '../../icons/user.svg'
 import { useState } from 'react'
+import { connect } from 'react-redux'
+import { setAlert } from '../../redux/actions/alerts'
+import Alert from '../Alert'
 
-const RegisterComponent = () => {
+const RegisterComponent = (props) => {
     const [user, setUser] = useState({
         name: '', email: '', password1: '', password2: ''
     })
@@ -14,14 +17,17 @@ const RegisterComponent = () => {
     }
     const handleSubmit = (e) => {
         e.preventDefault();
-        if (password1 !== password2) {
-            console.log("Password don't match");
-            return
+        if (!name || !email || !password1 || !password2) {
+            props.dispatch(setAlert("Incomplete Fields", "FAILED", 3000));
+        } else if (password1 !== password2) {
+            props.dispatch(setAlert("Password don't match", "FAILED", 3000));
+        } else {
+            props.dispatch(setAlert('Registered Successfully', 'SUCCESS', 3000))
         }
-        console.log(user);
     }
     return (
         <div className={styles['container']}>
+            <Alert />
             <span className={styles['header']}><UserSVG className={styles['svg']} /> SignUp</span>
             <form className={styles['form']} onSubmit={handleSubmit}>
                 <input
@@ -69,4 +75,4 @@ const RegisterComponent = () => {
     )
 }
 
-export default RegisterComponent
+export default connect()(RegisterComponent)

@@ -2,8 +2,11 @@ import styles from './Auth.module.css'
 import { Link } from 'react-router-dom'
 import { ReactComponent as UserSVG } from '../../icons/user.svg'
 import { useState } from 'react'
+import Alert from '../Alert'
+import { connect } from 'react-redux'
+import { setAlert } from '../../redux/actions/alerts'
 
-const LoginComponent = () => {
+const LoginComponent = (props) => {
     const [user, setUser] = useState({
         email: '', password: '',
     })
@@ -14,10 +17,15 @@ const LoginComponent = () => {
     }
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(user);
+        if (!email || !password) {
+            props.dispatch(setAlert("Incomplete Fields", "FAILED", 3000));
+        } else {
+            props.dispatch(setAlert('Registered Successfully', 'SUCCESS', 3000))
+        }
     }
     return (
         <div className={styles['container']}>
+            <Alert />
             <span className={styles['header']}><UserSVG className={styles['svg']} /> Login</span>
             <form className={styles['form']} onSubmit={handleSubmit}>
                 <input
@@ -49,4 +57,4 @@ const LoginComponent = () => {
     )
 }
 
-export default LoginComponent
+export default connect()(LoginComponent);
