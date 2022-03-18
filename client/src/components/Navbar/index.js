@@ -6,7 +6,9 @@ import { Link } from 'react-router-dom';
 const Navbar = ({ isSidebarOpen, toggleSidebar }) => {
     return (
         <nav className={styles['navbar']}>
-            <span className={styles['logo']}>ConnectPlatform</span>
+            <Link style={{ textDecoration: 'none' }} to='/'>
+                <span className={styles['logo']}>ConnectPlatform</span>
+            </Link>
             <div className={styles['links']}>
                 <span className={styles['link']}>Developers</span> |
                 <Link style={{ textDecoration: 'none' }} to='/register'>
