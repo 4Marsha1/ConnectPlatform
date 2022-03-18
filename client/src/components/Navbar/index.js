@@ -1,5 +1,7 @@
 import styles from './Navbar.module.css';
 import Sidebar from '../Sidebar';
+import { useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
 const Navbar = ({ isSidebarOpen, toggleSidebar }) => {
     return (
@@ -7,8 +9,12 @@ const Navbar = ({ isSidebarOpen, toggleSidebar }) => {
             <span className={styles['logo']}>ConnectPlatform</span>
             <div className={styles['links']}>
                 <span className={styles['link']}>Developers</span> |
-                <span className={styles['link']}>Register</span> |
-                <span className={styles['link']}>Login</span>
+                <Link style={{ textDecoration: 'none' }} to='/register'>
+                    <span className={styles['link']}>Register</span>
+                </Link> |
+                <Link style={{ textDecoration: 'none' }} to='/login'>
+                    <span className={styles['link']}>Login</span>
+                </Link>
             </div>
             {
                 isSidebarOpen ? <Sidebar toggleSidebar={toggleSidebar} /> :

@@ -1,0 +1,74 @@
+.container{
+    padding: 2rem 4rem;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+}
+.header{
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    font-size: 2rem;
+    font-weight: 700;
+}
+.svg{
+    width: 50px;
+    height: 50px;
+}
+.form{
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+}
+.input{
+    width: 100%;
+    padding: 0.4rem 2rem;
+    outline: 1px solid blueviolet;
+}
+.btn{
+    background-color: blueviolet;
+    color: white;
+    font-size: 1.2rem;
+    font-weight: 500;
+    padding: 0.4rem 2rem;
+    border: 2px solid blueviolet;
+    border-radius: 0.4rem;
+    cursor: pointer;
+    transition: 0.4s ease all;
+}
+.btn:hover{
+    background-color: white;
+    color: blueviolet;
+}
+.redirect{
+    color: rgb(134, 131, 131);
+    font-weight: 500;
+    text-decoration: none;
+    transition: 0.4s ease all;
+}
+.redirect:hover{
+    text-decoration: underline;
+    color: black;
+}
+
+@media screen and (max-width:540px){
+    .container{
+        padding: 2rem 1rem;
+    }
+    .form{
+        width: 90%;
+    }
+}
+
+
+@media (min-width:540px) and (max-width:1000px){
+    .form{
+        width: 60%;
+    }
+}

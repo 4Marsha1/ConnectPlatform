@@ -1,5 +1,6 @@
 import styles from './Landing.module.css';
 import bg from '../../images/bg.jpg'
+import { Link } from 'react-router-dom';
 
 const LandingComponent = () => {
     return (
@@ -10,8 +11,12 @@ const LandingComponent = () => {
             <div className={styles['overlay']}>
                 <span className={styles['header']}>Welcome to ConnectPlatform!</span>
                 <div className={styles['btns']}>
-                    <button className={styles['btn']}>Register</button>
-                    <button className={styles['btn']}>Login</button>
+                    <Link style={{ textDecoration: 'none' }} to='/register'>
+                        <span className={styles['btn']}>Register</span>
+                    </Link>
+                    <Link style={{ textDecoration: 'none' }} to='/login'>
+                        <span className={styles['btn']}>Login</span>
+                    </Link>
                 </div>
             </div>
         </div>

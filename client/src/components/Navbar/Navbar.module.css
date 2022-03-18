@@ -8,6 +8,7 @@
     justify-content: space-between;
     align-items: flex-end;
     z-index: 2;
+    background-color: #121313;
 }
 .logo{
     font-size: 1.8rem;
@@ -24,6 +25,7 @@
     font-size: 1.2rem;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     font-weight: 500;
+    color: #ccc;
     cursor: pointer;
     transition: 0.4s ease-in-out all;
 }
