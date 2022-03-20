@@ -1,8 +1,8 @@
 import { Link } from 'react-router-dom'
 import styles from './ProfileForms.module.css'
 
-const ProfileForms = ({ company, website, location, status, skills, githubusername,
-    bio, twitter, facebook, linkedin, youtube, instagram, handleChange, handleSubmit, showSocialMedia, toggleSocialMedia }) => {
+const ProfileForms = ({ company, website, location, status, skills, githubusername, bio, twitter,
+    facebook, linkedin, youtube, instagram, handleChange, handleSubmit, showSocialMedia, toggleSocialMedia, type }) => {
     return (
         <div className={styles['container']}>
             <span className={styles['header']}>Create Your Profile</span>
@@ -154,7 +154,12 @@ const ProfileForms = ({ company, website, location, status, skills, githubuserna
                     }
                 </div>
                 <div className={styles['btns']}>
-                    <input className={styles['create-btn']} type="submit" value='Create Profile' />
+                    {
+                        type === 'create' ?
+                            <input className={styles['create-btn']} type="submit" value='Create Profile' />
+                            :
+                            <input className={styles['create-btn']} type="submit" value='Edit Profile' />
+                    }
                     <Link className={styles['back-btn']} to='/dashboard'>Go Back</Link>
                 </div>
             </form>

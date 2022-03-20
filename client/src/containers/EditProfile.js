@@ -74,6 +74,7 @@ const EditProfile = (props) => {
                 handleSubmit={handleSubmit}
                 showSocialMedia={showSocialMedia}
                 toggleSocialMedia={toggleSocialMedia}
+                type='edit'
             />
         </>
     )

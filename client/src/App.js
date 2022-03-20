@@ -13,6 +13,8 @@ import Dashboard from './containers/Dashboard';
 import CreateProfile from './containers/CreateProfile';
 import Alert from './components/Alert';
 import EditProfile from './containers/EditProfile';
+import Experiences from './containers/Experiences';
+import Educations from './containers/Educations';
 
 const App = () => {
     const [isSidebarOpen, setIsSidebarOpen] = useState(false)
@@ -74,7 +76,23 @@ const App = () => {
                             path='/edit-profile'
                             exact
                             element={<EditProfile />}
-                            key='route-create-profile-screen'
+                            key='route-edit-profile-screen'
+                        />
+                    </Route>
+                    <Route exact path='/add-experience' element={<PrivateRoute />}>
+                        <Route
+                            path='/add-experience'
+                            exact
+                            element={<Experiences />}
+                            key='route-add-experience-screen'
+                        />
+                    </Route>
+                    <Route exact path='/add-education' element={<PrivateRoute />}>
+                        <Route
+                            path='/add-education'
+                            exact
+                            element={<Educations />}
+                            key='route-add-education-screen'
                         />
                     </Route>
                 </Routes>
