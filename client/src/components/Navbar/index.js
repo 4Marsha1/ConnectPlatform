@@ -6,7 +6,6 @@ import { logoutUser } from '../../redux/actions/auth';
 
 const Navbar = (props) => {
     const { isSidebarOpen, toggleSidebar } = props
-    console.log(props.token);
     return (
         <nav className={styles['navbar']}>
             <Link className={styles['btn']} to='/'>

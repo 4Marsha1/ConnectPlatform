@@ -10,6 +10,7 @@ import Navbar from './components/Navbar';
 import Register from './containers/Register';
 import Login from './containers/Login';
 import Dashboard from './containers/Dashboard';
+import CreateProfile from './containers/CreateProfile';
 
 const App = () => {
     const [isSidebarOpen, setIsSidebarOpen] = useState(false)
@@ -55,6 +56,14 @@ const App = () => {
                             exact
                             element={<Dashboard />}
                             key='route-dashboard-screen'
+                        />
+                    </Route>
+                    <Route exact path='/create-profile' element={<PrivateRoute />}>
+                        <Route
+                            path='/create-profile'
+                            exact
+                            element={<CreateProfile />}
+                            key='route-create-profile-screen'
                         />
                     </Route>
                 </Routes>

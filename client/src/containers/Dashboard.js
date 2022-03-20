@@ -13,11 +13,11 @@ const Dashboard = (props) => {
         }
         cb();
     }, [])
-    if (props.profile.loaded) {
-        console.log(props.profile.profile);
-    }
     return (
-        <DashboardComponent />
+        <DashboardComponent
+            user={props.auth.user}
+            profile={props.profile.profile}
+        />
     )
 }
 
