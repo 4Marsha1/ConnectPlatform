@@ -1,22 +1,39 @@
 import styles from './Navbar.module.css';
 import Sidebar from '../Sidebar';
-import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { logoutUser } from '../../redux/actions/auth';
 
-const Navbar = ({ isSidebarOpen, toggleSidebar }) => {
+const Navbar = (props) => {
+    const { isSidebarOpen, toggleSidebar } = props
+    console.log(props.token);
     return (
         <nav className={styles['navbar']}>
-            <Link style={{ textDecoration: 'none' }} to='/'>
+            <Link className={styles['btn']} to='/'>
                 <span className={styles['logo']}>ConnectPlatform</span>
             </Link>
             <div className={styles['links']}>
-                <span className={styles['link']}>Developers</span> |
-                <Link style={{ textDecoration: 'none' }} to='/register'>
-                    <span className={styles['link']}>Register</span>
-                </Link> |
-                <Link style={{ textDecoration: 'none' }} to='/login'>
-                    <span className={styles['link']}>Login</span>
-                </Link>
+                {
+                    props.token !== null ?
+                        <>
+                            <Link className={styles['btn']} to='/profile'>
+                                <span className={styles['link']}>Profile</span>
+                            </Link> |
+                            <button className={styles['btn']} onClick={() => props.dispatch(logoutUser())}>
+                                <span className={styles['link']}>Logout</span>
+                            </button>
+                        </>
+                        :
+                        <>
+                            <span className={styles['link']}>Developers</span> |
+                            <Link className={styles['btn']} to='/register'>
+                                <span className={styles['link']}>Register</span>
+                            </Link> |
+                            <Link className={styles['btn']} to='/login'>
+                                <span className={styles['link']}>Login</span>
+                            </Link>
+                        </>
+                }
             </div>
             {
                 isSidebarOpen ? <Sidebar toggleSidebar={toggleSidebar} /> :
@@ -30,4 +47,10 @@ const Navbar = ({ isSidebarOpen, toggleSidebar }) => {
     )
 }
 
-export default Navbar
+const mapStateToProps = state => {
+    return {
+        token: state.authReducer.token
+    }
+}
+
+export default connect(mapStateToProps)(Navbar)

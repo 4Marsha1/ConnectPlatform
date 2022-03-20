@@ -6,7 +6,7 @@ const Alert = (props) => {
         <div className={styles['container']}>
             {
                 props.alerts.map(alert => {
-                    return <span className={`${styles['alert']} ${styles[alert.type]}`}>{alert.msg}</span>
+                    return <span key={alert.id} className={`${styles['alert']} ${styles[alert.type]}`}>{alert.msg}</span>
                 })
             }
         </div>

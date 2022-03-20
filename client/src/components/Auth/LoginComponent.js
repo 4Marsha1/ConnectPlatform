@@ -1,28 +1,9 @@
 import styles from './Auth.module.css'
 import { Link } from 'react-router-dom'
 import { ReactComponent as UserSVG } from '../../icons/user.svg'
-import { useState } from 'react'
 import Alert from '../Alert'
-import { connect } from 'react-redux'
-import { setAlert } from '../../redux/actions/alerts'
 
-const LoginComponent = (props) => {
-    const [user, setUser] = useState({
-        email: '', password: '',
-    })
-    const { email, password } = user
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-        setUser({ ...user, [name]: value })
-    }
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        if (!email || !password) {
-            props.dispatch(setAlert("Incomplete Fields", "FAILED", 3000));
-        } else {
-            props.dispatch(setAlert('Registered Successfully', 'SUCCESS', 3000))
-        }
-    }
+const LoginComponent = ({ email, password, handleChange, handleSubmit }) => {
     return (
         <div className={styles['container']}>
             <Alert />
@@ -57,4 +38,4 @@ const LoginComponent = (props) => {
     )
 }
 
-export default connect()(LoginComponent);
+export default LoginComponent;

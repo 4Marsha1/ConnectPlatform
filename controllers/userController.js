@@ -4,6 +4,19 @@ const bcrypt = require('bcryptjs');
 const gravatar = require('gravatar');
 const User = require('../models/userModel');
 
+// @Route           GET /api/users/
+// @Desc            Load user
+// @Access          PRIVATE
+const loadUser = asyncHandler(async (req, res) => {
+    try {
+        const user = await User.findById(req.user.id).select('-password');
+        res.json(user)
+    } catch (err) {
+        res.status(400);
+        throw new Error('User load failed!')
+    }
+})
+
 // @Route           POST /api/users/
 // @Desc            Register new user
 // @Access          PUBLIC
@@ -87,6 +100,7 @@ const generateToken = (id) => {
 }
 
 module.exports = {
+    loadUser,
     registerUser,
     loginUser,
 }
