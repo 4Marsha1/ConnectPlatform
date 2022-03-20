@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { useState } from 'react';
 import { connect } from 'react-redux';
 import RegisterComponent from '../components/Auth/RegisterComponent';
@@ -5,6 +6,13 @@ import { setAlert } from '../redux/actions/alerts';
 import { registerUser } from '../redux/actions/auth';
 
 const Register = (props) => {
+    useEffect(() => {
+        if (props.auth.isAuthenticated) {
+            props.dispatch(setAlert('Registered Successfully', 'SUCCESS', 3000));
+        } else if (props.auth.isAuthenticated === false) {
+            props.dispatch(setAlert("Registration Failed", "FAILED", 3000));
+        }
+    }, [props.auth.isAuthenticated])
     const [user, setUser] = useState({
         name: '', email: '', password1: '', password2: ''
     })
@@ -21,11 +29,6 @@ const Register = (props) => {
             props.dispatch(setAlert("Password don't match", "FAILED", 3000));
         } else {
             await props.dispatch(registerUser(name, email, password1))
-            if (props.auth.isAuthenticated) {
-                props.dispatch(setAlert('Registered Successfully', 'SUCCESS', 3000));
-            } else {
-                props.dispatch(setAlert("Registration Failed", "FAILED", 3000));
-            }
         }
     }
     return (

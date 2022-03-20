@@ -9,7 +9,7 @@ const initialState = {
     isLoginInitiated: null,
     isLoadInitiated: null,
     isLoadSuccessful: null,
-    isAuthenticated: false,
+    isAuthenticated: null,
     user: {},
     token: localStorage.getItem('token'),
 }
@@ -86,7 +86,7 @@ export default function (state = initialState, action) {
                 isLoginInitiated: null,
                 isLoadInitiated: null,
                 isLoadSuccessful: null,
-                isAuthenticated: false,
+                isAuthenticated: null,
                 user: {},
                 token: null
             }

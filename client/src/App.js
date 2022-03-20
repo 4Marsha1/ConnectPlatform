@@ -11,6 +11,8 @@ import Register from './containers/Register';
 import Login from './containers/Login';
 import Dashboard from './containers/Dashboard';
 import CreateProfile from './containers/CreateProfile';
+import Alert from './components/Alert';
+import EditProfile from './containers/EditProfile';
 
 const App = () => {
     const [isSidebarOpen, setIsSidebarOpen] = useState(false)
@@ -25,6 +27,7 @@ const App = () => {
                     isSidebarOpen={isSidebarOpen}
                     toggleSidebar={toggleSidebar}
                 />
+                <Alert />
                 <Routes>
                     <Route exact path='/' element={<InvertedPrivateRoute />}>
                         <Route
@@ -63,6 +66,14 @@ const App = () => {
                             path='/create-profile'
                             exact
                             element={<CreateProfile />}
+                            key='route-create-profile-screen'
+                        />
+                    </Route>
+                    <Route exact path='/edit-profile' element={<PrivateRoute />}>
+                        <Route
+                            path='/edit-profile'
+                            exact
+                            element={<EditProfile />}
                             key='route-create-profile-screen'
                         />
                     </Route>

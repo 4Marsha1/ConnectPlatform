@@ -1,12 +1,10 @@
 import styles from './Auth.module.css'
 import { Link } from 'react-router-dom'
 import { ReactComponent as UserSVG } from '../../icons/user.svg'
-import Alert from '../Alert'
 
 const LoginComponent = ({ email, password, handleChange, handleSubmit }) => {
     return (
         <div className={styles['container']}>
-            <Alert />
             <span className={styles['header']}><UserSVG className={styles['svg']} /> Login</span>
             <form className={styles['form']} onSubmit={handleSubmit}>
                 <input

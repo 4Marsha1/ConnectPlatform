@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import styles from './Dashboard.module.css'
 
 const Dashboard = ({ user, profile }) => {
@@ -14,7 +14,17 @@ const Dashboard = ({ user, profile }) => {
                         <button className={styles['create-btn']} onClick={() => navigate('/create-profile')} >Create Profile</button>
                     </> :
                     <>
-
+                        <div className={styles['links']}>
+                            <Link className={styles['link']} to='/edit-profile'>
+                                Edit Profile
+                            </Link>
+                            <Link className={styles['link']} to='/add-education'>
+                                Add Education
+                            </Link>
+                            <Link className={styles['link']} to='/add-experience'>
+                                Add Experience
+                            </Link>
+                        </div>
                     </>
             }
         </div>

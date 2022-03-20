@@ -12,8 +12,8 @@
 	color: turquoise;
 }
 .greet {
-	font-size: 1.6rem;
-	font-weight: 600;
+	font-size: 1.4rem;
+	font-weight: 500;
 }
 .msg {
 	font-size: 1.2rem;
@@ -31,6 +31,26 @@
 	transition: 0.4s ease all;
 }
 .create-btn:hover {
+	background-color: white;
+	color: teal;
+}
+
+.links {
+	display: flex;
+	gap: 2rem;
+}
+.link {
+	text-decoration: none;
+	color: white;
+	background-color: teal;
+	border: 1px solid teal;
+	padding: 0.4rem 2rem;
+	font-size: 1rem;
+	font-weight: 500;
+	cursor: pointer;
+	transition: 0.4s ease all;
+}
+.link:hover {
 	background-color: white;
 	color: teal;
 }

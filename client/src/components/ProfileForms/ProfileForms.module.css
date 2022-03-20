@@ -46,6 +46,10 @@
 	padding: 0.4rem 2rem;
 	background-color: teal;
 }
+.btns {
+	display: flex;
+	gap: 2rem;
+}
 .create-btn {
 	background-color: teal;
 	border: 2px solid teal;
@@ -57,6 +61,21 @@
 	transition: 0.4s ease all;
 }
 .create-btn:hover {
+	background-color: white;
+	color: teal;
+}
+.back-btn {
+	text-decoration: none;
+	background-color: #ccc;
+	border: 2px solid #ccc;
+	color: black;
+	padding: 0.5rem 2rem;
+	font-size: 1.3rem;
+	font-weight: 600;
+	cursor: pointer;
+	transition: 0.4s ease all;
+}
+.back-btn:hover {
 	background-color: white;
 	color: teal;
 }

@@ -3,8 +3,16 @@ import { useState } from 'react';
 import { connect } from 'react-redux';
 import { setAlert } from '../redux/actions/alerts';
 import { loginUser } from '../redux/actions/auth';
+import { useEffect } from 'react';
 
 const Login = (props) => {
+    useEffect(() => {
+        if (props.auth.isAuthenticated) {
+            props.dispatch(setAlert('Logged in Successfully', 'SUCCESS', 3000))
+        } else if (props.auth.isAuthenticated === false) {
+            props.dispatch(setAlert("Login Failed", "FAILED", 3000));
+        }
+    }, [props.auth.isAuthenticated])
     const [user, setUser] = useState({
         email: '', password: '',
     })
@@ -19,11 +27,6 @@ const Login = (props) => {
             props.dispatch(setAlert("Incomplete Fields", "FAILED", 3000));
         } else {
             await props.dispatch(loginUser(email, password))
-            if (props.auth.isAuthenticated) {
-                props.dispatch(setAlert('Logged in Successfully', 'SUCCESS', 3000))
-            } else {
-                props.dispatch(setAlert("Login Failed", "FAILED", 3000));
-            }
         }
     }
     return (

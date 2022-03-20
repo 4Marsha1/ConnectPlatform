@@ -1,6 +1,7 @@
+import { Link } from 'react-router-dom'
 import styles from './ProfileForms.module.css'
 
-const CreateProfile = ({ company, website, location, status, skills, githubusername,
+const ProfileForms = ({ company, website, location, status, skills, githubusername,
     bio, twitter, facebook, linkedin, youtube, instagram, handleChange, handleSubmit, showSocialMedia, toggleSocialMedia }) => {
     return (
         <div className={styles['container']}>
@@ -152,10 +153,13 @@ const CreateProfile = ({ company, website, location, status, skills, githubusern
                             <></>
                     }
                 </div>
-                <input className={styles['create-btn']} type="submit" value='Create Profile' />
+                <div className={styles['btns']}>
+                    <input className={styles['create-btn']} type="submit" value='Create Profile' />
+                    <Link className={styles['back-btn']} to='/dashboard'>Go Back</Link>
+                </div>
             </form>
         </div>
     )
 }
 
-export default CreateProfile
+export default ProfileForms
