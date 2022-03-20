@@ -10,8 +10,7 @@ const getProfile = asyncHandler(async (req, res) => {
     try {
         const profile = await Profile.findOne({ user: req.user.id }).populate('user', ['name', 'avatar']);
         if (!profile) {
-            res.status(400);
-            throw new Error("User doesn't exist!")
+            res.status(200).json({ msg: 'Profile Not Found' })
         }
         res.status(200).json(profile)
     } catch (err) {

@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { LOAD_FAILED, LOAD_INITIATED, LOAD_SUCCESS, LOGIN_FAILED, LOGIN_INITIATED, LOGIN_SUCCESS, LOGOUT_USER, REGISTER_FAILED, REGISTER_INITIATED, REGISTER_SUCCESS } from './types'
+import { CLEAR_PROFILE, LOAD_FAILED, LOAD_INITIATED, LOAD_SUCCESS, LOGIN_FAILED, LOGIN_INITIATED, LOGIN_SUCCESS, LOGOUT_USER, REGISTER_FAILED, REGISTER_INITIATED, REGISTER_SUCCESS } from './types'
 
 export const registerUser = (name, email, password) => async dispatch => {
     dispatch({
@@ -81,6 +81,9 @@ export const loadUser = (token) => async dispatch => {
 }
 
 export const logoutUser = () => async dispatch => {
+    dispatch({
+        type: CLEAR_PROFILE
+    })
     dispatch({
         type: LOGOUT_USER
     })

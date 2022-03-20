@@ -9,6 +9,7 @@ import Landing from './containers/Landing';
 import Navbar from './components/Navbar';
 import Register from './containers/Register';
 import Login from './containers/Login';
+import Dashboard from './containers/Dashboard';
 
 const App = () => {
     const [isSidebarOpen, setIsSidebarOpen] = useState(false)
@@ -52,7 +53,7 @@ const App = () => {
                         <Route
                             path='/dashboard'
                             exact
-                            element={<h1>Hello</h1>}
+                            element={<Dashboard />}
                             key='route-dashboard-screen'
                         />
                     </Route>

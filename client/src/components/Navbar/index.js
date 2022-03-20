@@ -17,7 +17,7 @@ const Navbar = (props) => {
                     props.token !== null ?
                         <>
                             <Link className={styles['btn']} to='/profile'>
-                                <span className={styles['link']}>Profile</span>
+                                <span className={styles['link']}>Dashboard</span>
                             </Link> |
                             <button className={styles['btn']} onClick={() => props.dispatch(logoutUser())}>
                                 <span className={styles['link']}>Logout</span>
