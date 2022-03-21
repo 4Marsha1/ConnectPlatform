@@ -22,11 +22,16 @@ const Profile = ({ auth, profile, repos }) => {
                             <span className={styles['location']}>{profile.location && <span>{profile.location}</span>}</span>
                             <div className={styles['links']}>
                                 {profile.website && <a href={profile.website} target="_blank">Website</a>}
-                                {profile.social.facebook && <a href={profile.social.facebook} target="_blank">Facebook</a>}
-                                {profile.social.twitter && <a href={profile.social.twitter} target="_blank">Twitter</a>}
-                                {profile.social.instagram && <a href={profile.social.instagram} target="_blank">Instagram</a>}
-                                {profile.social.linkedin && <a href={profile.social.linkedin} target="_blank">LinkedIn</a>}
-                                {profile.social.youtube && <a href={profile.social.youtube} target="_blank">Youtube</a>}
+                                {
+                                    profile.social ?
+                                        <>
+                                            {profile.social.facebook && <a href={profile.social.facebook} target="_blank">Facebook</a>}
+                                            {profile.social.twitter && <a href={profile.social.twitter} target="_blank">Twitter</a>}
+                                            {profile.social.instagram && <a href={profile.social.instagram} target="_blank">Instagram</a>}
+                                            {profile.social.linkedin && <a href={profile.social.linkedin} target="_blank">LinkedIn</a>}
+                                            {profile.social.youtube && <a href={profile.social.youtube} target="_blank">Youtube</a>}
+                                        </> : null
+                                }
                             </div>
                         </div>
                         <div className={styles['bottom-section']}>
