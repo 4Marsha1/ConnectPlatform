@@ -11,13 +11,18 @@ const Profile = ({ auth, profile, repos }) => {
                         <div className={styles['btns']}>
                             <Link className={styles['back']} to='/developers'>Back to developers</Link>
                             {
-                                auth.user && auth.user._id === profile.user._id ?
+                                auth.isAuthenticated && auth.user && auth.user._id === profile.user._id ?
                                     <Link className={styles['view']} to='/edit-profile'>Edit Profile</Link> : null
                             }
                         </div>
                         <div className={styles['top-section']}>
-                            <img className={styles['img']} src={profile.user.avatar} alt="" />
-                            <span className={styles['name']}>{profile.user.name}</span>
+                            {
+                                profile.user ?
+                                    <>
+                                        <img className={styles['img']} src={profile.user.avatar} alt="" />
+                                        <span className={styles['name']}>{profile.user.name}</span>
+                                    </> : null
+                            }
                             <span className={styles['status']}>{profile.status} {profile.company && <span>{profile.company}</span>}</span>
                             <span className={styles['location']}>{profile.location && <span>{profile.location}</span>}</span>
                             <div className={styles['links']}>
@@ -45,7 +50,7 @@ const Profile = ({ auth, profile, repos }) => {
                             <span className={styles['hr']}></span>
                             <span className={styles['sub']}>Skill Set</span>
                             <span className={styles['skillset']}>
-                                {profile.skills.map((skill, idx) => {
+                                {profile.skills && profile.skills.map((skill, idx) => {
                                     return <span className={styles['sk']} key={idx}>
                                         {skill}
                                     </span>
@@ -54,7 +59,7 @@ const Profile = ({ auth, profile, repos }) => {
                         </div>
                         <div className={styles['bottom-section']}>
                             {
-                                profile.experiences.length > 0 ?
+                                profile.experiences && profile.experiences.length > 0 ?
                                     <>
                                         <span className={styles['sub']}>Experiences</span>
                                         <div className={styles['experiences']}>
@@ -82,7 +87,7 @@ const Profile = ({ auth, profile, repos }) => {
                         </div>
                         <div className={styles['bottom-section']}>
                             {
-                                profile.educations.length > 0 ?
+                                profile.educations && profile.educations.length > 0 ?
                                     <>
                                         <span className={styles['sub']}>Educations</span>
                                         <div className={styles['experiences']}>
@@ -110,7 +115,7 @@ const Profile = ({ auth, profile, repos }) => {
                         </div>
                         <div className={styles['bottom-section']}>
                             {
-                                repos.length > 0 ?
+                                repos && repos.length > 0 ?
                                     <>
                                         <span className={styles['sub']}>Github Repos</span>
                                         <div className={styles['experiences']}>

@@ -1,7 +1,8 @@
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import styles from './Profiles.module.css'
 
 const ProfileItem = ({ profile }) => {
+    const navigate = useNavigate()
     return (
         <div className={styles['card']}>
             {
@@ -20,9 +21,11 @@ const ProfileItem = ({ profile }) => {
                         })
                     }
                 </div>
-                <Link className={styles['view']} to={`/developers/${profile.user._id}`}>
+                <button className={styles['view']}
+                    onClick={() => navigate(`/developers/${profile.user._id}`, { state: { profile } })}
+                >
                     View Profile
-                </Link>
+                </button>
             </div>
         </div >
     )

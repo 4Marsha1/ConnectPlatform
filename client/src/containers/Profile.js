@@ -1,18 +1,19 @@
 import { useEffect } from "react";
 import { connect } from "react-redux";
-import { useParams } from "react-router-dom"
+import { useLocation } from "react-router-dom"
 import ProfileComponent from "../components/Profiles/Profile"
 import { getGithubRepos, getProfileById } from "../redux/actions/profile";
-import { loadUser } from '../redux/actions/auth';
 
 const Profile = (props) => {
-    const { id } = useParams();
+    const { state } = useLocation();
+    const { profile } = state;
+    console.log(profile);
     useEffect(() => {
-        props.dispatch(loadUser(props.auth.token))
-        props.dispatch(getProfileById(id))
-        props.dispatch(getGithubRepos(props.profile.githubusername))
+        props.dispatch(getProfileById(profile.user._id))
+        props.dispatch(getGithubRepos(profile.githubusername))
     }, [])
     return (
+        // <span>Hello</span>
         <ProfileComponent
             repos={props.repos}
             auth={props.auth}
