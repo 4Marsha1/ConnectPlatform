@@ -92,3 +92,18 @@
 	border: none;
 	cursor: pointer;
 }
+.delete-account-btn {
+	text-decoration: none;
+	color: white;
+	background-color: red;
+	border: 1px solid red;
+	padding: 0.4rem 2rem;
+	font-size: 1rem;
+	font-weight: 500;
+	cursor: pointer;
+	transition: 0.4s ease all;
+}
+.delete-account-btn:hover {
+	background-color: white;
+	color: red;
+}

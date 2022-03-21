@@ -2,6 +2,7 @@ const asyncHandler = require('express-async-handler');
 const request = require('request');
 const Profile = require('../models/profileModel');
 const User = require('../models/userModel');
+const Post = require("../models/postModel");
 
 // @Route       GET /api/profile
 // @Desc        Get current user profile
@@ -193,6 +194,7 @@ const getProfileById = asyncHandler(async (req, res) => {
 // @Access      PRIVATE
 const deleteProfile = asyncHandler(async (req, res) => {
     try {
+        await Post.deleteMany({ user: req.user.id })
         const profile = await Profile.findOneAndRemove({ user: req.user.id })
         const user = await User.findByIdAndRemove(req.user.id)
         if (!profile && !user) {

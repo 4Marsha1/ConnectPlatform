@@ -1,7 +1,7 @@
 import { Link, useNavigate } from 'react-router-dom'
 import styles from './Dashboard.module.css'
 
-const Dashboard = ({ user, profile }) => {
+const Dashboard = ({ user, profile, handleDeleteAccount }) => {
     const navigate = useNavigate();
     return (
         <div className={styles['container']}>
@@ -24,6 +24,8 @@ const Dashboard = ({ user, profile }) => {
                             <Link className={styles['link']} to='/add-experience'>
                                 Add Experience
                             </Link>
+                            <button className={styles['delete-account-btn']}
+                                onClick={() => handleDeleteAccount()}>Delete Account</button>
                         </div>
                     </>
             }

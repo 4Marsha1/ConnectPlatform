@@ -1,4 +1,5 @@
 import {
+    ACCOUNT_DELETE_SUCCESS,
     LOAD_FAILED, LOAD_INITIATED, LOAD_SUCCESS, LOGIN_FAILED, LOGIN_INITIATED, LOGIN_SUCCESS,
     LOGOUT_USER,
     REGISTER_FAILED, REGISTER_INITIATED, REGISTER_SUCCESS
@@ -79,6 +80,7 @@ export default function (state = initialState, action) {
                 isLoadSuccessful: false,
                 user: {},
             }
+        case ACCOUNT_DELETE_SUCCESS:
         case LOGOUT_USER:
             localStorage.removeItem('token')
             return {
