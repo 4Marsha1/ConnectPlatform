@@ -17,6 +17,7 @@ import Experiences from './containers/Experiences';
 import Educations from './containers/Educations';
 import Profiles from './containers/Profiles';
 import Profile from './containers/Profile';
+import Posts from './containers/Posts';
 
 const App = () => {
     const [isSidebarOpen, setIsSidebarOpen] = useState(false)
@@ -75,6 +76,14 @@ const App = () => {
                             exact
                             element={<Dashboard />}
                             key='route-dashboard-screen'
+                        />
+                    </Route>
+                    <Route exact path='/posts' element={<PrivateRoute />}>
+                        <Route
+                            path='/posts'
+                            exact
+                            element={<Posts />}
+                            key='route-posts-screen'
                         />
                     </Route>
                     <Route exact path='/create-profile' element={<PrivateRoute />}>

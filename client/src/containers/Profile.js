@@ -7,13 +7,11 @@ import { getGithubRepos, getProfileById } from "../redux/actions/profile";
 const Profile = (props) => {
     const { state } = useLocation();
     const { profile } = state;
-    console.log(profile);
     useEffect(() => {
         props.dispatch(getProfileById(profile.user._id))
         props.dispatch(getGithubRepos(profile.githubusername))
     }, [])
     return (
-        // <span>Hello</span>
         <ProfileComponent
             repos={props.repos}
             auth={props.auth}

@@ -18,6 +18,9 @@ const Navbar = (props) => {
                             <Link className={styles['btn']} to='/developers'>
                                 <span className={styles['link']}>Developers</span>
                             </Link> |
+                            <Link className={styles['btn']} to='/posts'>
+                                <span className={styles['link']}>Posts</span>
+                            </Link> |
                             <Link className={styles['btn']} to='/dashboard'>
                                 <span className={styles['link']}>Dashboard</span>
                             </Link> |
