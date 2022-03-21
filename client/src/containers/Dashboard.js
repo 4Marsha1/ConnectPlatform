@@ -33,16 +33,16 @@ const Dashboard = (props) => {
                 profile={props.profile.profile}
                 handleDeleteAccount={handleDeleteAccount}
             />
-            <Experiences
+            {props.profile.profile.experiences && <Experiences
                 loaded={props.profile.loaded}
                 experiences={props.profile.profile.experiences}
                 handleDeleteExperience={handleDeleteExperience}
-            />
-            <Educations
+            />}
+            {props.profile.profile.educations && <Educations
                 loaded={props.profile.loaded}
                 educations={props.profile.profile.educations}
                 handleDeleteEducation={handleDeleteEducation}
-            />
+            />}
         </>
     )
 }

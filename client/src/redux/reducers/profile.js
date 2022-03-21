@@ -6,7 +6,7 @@ import {
     ADD_EDUCATION_INITIATED,
     ADD_EDUCATION_SUCCESS,
     ADD_EXPERIENCE_FAILED, ADD_EXPERIENCE_INITIATED, ADD_EXPERIENCE_SUCCESS, CLEAR_PROFILE,
-    CREATE_PROFILE_FAILED, CREATE_PROFILE_INITIATED, CREATE_PROFILE_SUCCESS, DELETE_EDUCATION_FAILED, DELETE_EDUCATION_INITIATED, DELETE_EDUCATION_SUCCESS, DELETE_EXPERIENCE_FAILED, DELETE_EXPERIENCE_INITIATED, DELETE_EXPERIENCE_SUCCESS, LOAD_PROFILE_FAILED,
+    CREATE_PROFILE_FAILED, CREATE_PROFILE_INITIATED, CREATE_PROFILE_SUCCESS, DELETE_EDUCATION_FAILED, DELETE_EDUCATION_INITIATED, DELETE_EDUCATION_SUCCESS, DELETE_EXPERIENCE_FAILED, DELETE_EXPERIENCE_INITIATED, DELETE_EXPERIENCE_SUCCESS, GET_ALL_PROFILES_FAILED, GET_ALL_PROFILES_INITIATED, GET_ALL_PROFILES_SUCCESS, GET_GITHUB_REPOS_FAILED, GET_GITHUB_REPOS_INITIATED, GET_GITHUB_REPOS_SUCCESS, GET_PROFILE_BY_ID_FAILED, GET_PROFILE_BY_ID_INITIATED, GET_PROFILE_BY_ID_SUCCESS, LOAD_PROFILE_FAILED,
     LOAD_PROFILE_INITIATED, LOAD_PROFILE_SUCCESS
 } from "../actions/types";
 
@@ -14,6 +14,8 @@ const initialState = {
     loading: null,
     profile: {},
     loaded: null,
+    profiles: [],
+    repos: [],
     creating: null,
     created: null,
     addingExperience: null,
@@ -47,6 +49,63 @@ export default function (state = initialState, action) {
                 ...state,
                 loading: false,
                 profile: {},
+                loaded: false,
+            }
+        case GET_ALL_PROFILES_INITIATED:
+            return {
+                ...state,
+                loading: true,
+            }
+        case GET_ALL_PROFILES_SUCCESS:
+            return {
+                ...state,
+                loading: false,
+                profiles: action.payload,
+                loaded: true,
+            }
+        case GET_ALL_PROFILES_FAILED:
+            return {
+                ...state,
+                loading: false,
+                profiles: [],
+                loaded: false,
+            }
+        case GET_PROFILE_BY_ID_INITIATED:
+            return {
+                ...state,
+                loading: true,
+            }
+        case GET_PROFILE_BY_ID_SUCCESS:
+            return {
+                ...state,
+                loading: false,
+                profile: action.payload,
+                loaded: true,
+            }
+        case GET_PROFILE_BY_ID_FAILED:
+            return {
+                ...state,
+                loading: false,
+                profile: {},
+                loaded: false,
+            }
+        case GET_GITHUB_REPOS_INITIATED:
+            return {
+                ...state,
+                loading: true,
+            }
+        case GET_GITHUB_REPOS_SUCCESS:
+            return {
+                ...state,
+                loading: false,
+                repos: action.payload,
+                loaded: true,
+            }
+        case GET_GITHUB_REPOS_FAILED:
+            return {
+                ...state,
+                loading: false,
+                repos: [],
                 loaded: false,
             }
         case CREATE_PROFILE_INITIATED:

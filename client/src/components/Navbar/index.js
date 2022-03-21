@@ -15,7 +15,10 @@ const Navbar = (props) => {
                 {
                     props.token !== null ?
                         <>
-                            <Link className={styles['btn']} to='/profile'>
+                            <Link className={styles['btn']} to='/developers'>
+                                <span className={styles['link']}>Developers</span>
+                            </Link> |
+                            <Link className={styles['btn']} to='/dashboard'>
                                 <span className={styles['link']}>Dashboard</span>
                             </Link> |
                             <button className={styles['btn']} onClick={() => props.dispatch(logoutUser())}>
@@ -24,7 +27,9 @@ const Navbar = (props) => {
                         </>
                         :
                         <>
-                            <span className={styles['link']}>Developers</span> |
+                            <Link className={styles['btn']} to='/developers'>
+                                <span className={styles['link']}>Developers</span>
+                            </Link> |
                             <Link className={styles['btn']} to='/register'>
                                 <span className={styles['link']}>Register</span>
                             </Link> |

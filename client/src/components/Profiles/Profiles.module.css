@@ -1,0 +1,73 @@
+.container {
+	margin-top: 6rem;
+	padding: 2rem 4rem;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	gap: 1rem;
+}
+.header {
+	font-size: 2.5rem;
+	font-weight: 700;
+	color: turquoise;
+}
+.greet {
+	font-size: 1.4rem;
+	font-weight: 500;
+}
+
+.card {
+	width: 600px;
+	padding: 1rem 2rem;
+	border: 1px solid gray;
+	display: flex;
+	gap: 1rem;
+}
+.img {
+	width: 200px;
+	height: 200px;
+}
+.details {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	gap: 1rem;
+}
+.name {
+	font-size: 1.5rem;
+	font-weight: 600;
+}
+.status {
+	font-size: 1.3rem;
+	font-weight: 500;
+}
+.location {
+	font-size: 1.2rem;
+	color: gray;
+	font-weight: 600;
+}
+.skills {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.5rem;
+}
+.skill {
+	font-size: 1rem;
+	font-weight: 600;
+	color: teal;
+}
+.view {
+	background-color: teal;
+	border: 1px solid teal;
+	text-decoration: none;
+	color: white;
+	font-size: 1rem;
+	font-weight: 600;
+	padding: 0.4rem 1rem;
+	cursor: pointer;
+	transition: 0.5s ease all;
+}
+.view:hover {
+	background-color: white;
+	color: teal;
+}

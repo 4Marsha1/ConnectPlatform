@@ -43,11 +43,7 @@ const registerUser = asyncHandler(async (req, res) => {
         const hashedPassword = await bcrypt.hash(password, salt);
 
         // NEW USER DATA
-        const avatar = gravatar.url(email, {
-            s: '200',
-            r: 'pg',
-            d: '404'
-        })
+        const avatar = gravatar.url(email)
         const newUser = new User({
             name, email, password: hashedPassword, avatar
         })
