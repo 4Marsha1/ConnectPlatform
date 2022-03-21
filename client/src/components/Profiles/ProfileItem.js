@@ -20,11 +20,11 @@ const ProfileItem = ({ profile }) => {
                         })
                     }
                 </div>
-                <Link className={styles['view']} to={`/profile/${profile._id}`} >
+                <Link className={styles['view']} to={`/developers/${profile.user._id}`}>
                     View Profile
                 </Link>
             </div>
-        </div>
+        </div >
     )
 }
 

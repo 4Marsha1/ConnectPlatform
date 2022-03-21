@@ -26,6 +26,7 @@
 .img {
 	width: 200px;
 	height: 200px;
+	border-radius: 50%;
 }
 .details {
 	display: flex;
@@ -34,6 +35,8 @@
 	gap: 1rem;
 }
 .name {
+	color: black;
+	text-decoration: none;
 	font-size: 1.5rem;
 	font-weight: 600;
 }
@@ -58,7 +61,7 @@
 }
 .view {
 	background-color: teal;
-	border: 1px solid teal;
+	border: 2px solid teal;
 	text-decoration: none;
 	color: white;
 	font-size: 1rem;
@@ -70,4 +73,100 @@
 .view:hover {
 	background-color: white;
 	color: teal;
+}
+.back {
+	text-decoration: none;
+	background-color: #ccc;
+	border: 2px solid #ccc;
+	color: black;
+	font-size: 1rem;
+	font-weight: 600;
+	padding: 0.4rem 1rem;
+	cursor: pointer;
+	transition: 0.5s ease all;
+}
+.back:hover {
+	background-color: white;
+	color: teal;
+}
+.btns {
+	display: flex;
+	gap: 2rem;
+}
+
+.profile {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	gap: 4rem;
+}
+
+.top-section {
+	width: 100%;
+	padding: 2rem 4rem;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 1rem;
+	background-color: turquoise;
+}
+.links {
+	display: flex;
+	gap: 1rem;
+}
+.links > a {
+	font-size: 1.2rem;
+	font-weight: 600;
+	color: black;
+	text-decoration: none;
+	cursor: pointer;
+	transition: 0.4s ease all;
+}
+.links > a:hover {
+	text-decoration: underline;
+	color: white;
+}
+
+.bottom-section {
+	width: 100%;
+	padding: 2rem 4rem;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 1rem;
+	background-color: #f2f4f5;
+}
+.sub {
+	font-size: 1.6rem;
+	font-weight: 700;
+	color: teal;
+}
+.bio {
+	font-size: 1.2rem;
+	font-weight: 500;
+}
+.hr {
+	width: 100%;
+	background-color: gray;
+	height: 1px;
+}
+.skillset {
+	display: flex;
+	gap: 2rem;
+}
+.sk {
+	font-size: 1.2rem;
+	font-weight: 700;
+}
+
+.experiences {
+	width: 60%;
+	display: flex;
+	flex-direction: column;
+	gap: 2rem;
+}
+.experience {
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
 }

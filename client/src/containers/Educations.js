@@ -1,18 +1,15 @@
 import { useEffect } from 'react';
 import { useState } from 'react'
 import { connect } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
 import AddEducation from '../components/ProfileForms/AddEducations';
 import { setAlert } from '../redux/actions/alerts';
 import { addEducation } from '../redux/actions/profile';
 
 const Education = (props) => {
-    const navigate = useNavigate();
 
     useEffect(() => {
         if (props.profile.addedEducation) {
             props.dispatch(setAlert('Education added successfully', "SUCCESS", 4000));
-            navigate('/dashboard')
         } else if (props.profile.addedEducation === false) {
             props.dispatch(setAlert('Education addtion failed', "FAILED", 4000))
         }

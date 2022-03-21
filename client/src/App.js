@@ -16,6 +16,7 @@ import EditProfile from './containers/EditProfile';
 import Experiences from './containers/Experiences';
 import Educations from './containers/Educations';
 import Profiles from './containers/Profiles';
+import Profile from './containers/Profile';
 
 const App = () => {
     const [isSidebarOpen, setIsSidebarOpen] = useState(false)
@@ -45,6 +46,12 @@ const App = () => {
                         path='/developers'
                         element={<Profiles />}
                         key='route-profiles-screen'
+                    />
+                    <Route
+                        exact
+                        path='/developers/:id'
+                        element={<Profile />}
+                        key='route-profile-screen'
                     />
                     <Route exact path='/register' element={<InvertedPrivateRoute />}>
                         <Route

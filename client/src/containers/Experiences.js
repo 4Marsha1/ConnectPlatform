@@ -1,18 +1,15 @@
 import { useEffect } from 'react';
 import { useState } from 'react'
 import { connect } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
 import AddExperience from '../components/ProfileForms/AddExperience'
 import { setAlert } from '../redux/actions/alerts';
 import { addExperience } from '../redux/actions/profile';
 
 const Experience = (props) => {
-    const navigate = useNavigate();
 
     useEffect(() => {
         if (props.profile.addedExperience) {
             props.dispatch(setAlert('Experience added successfully', "SUCCESS", 4000));
-            navigate('/dashboard')
         } else if (props.profile.addedExperience === false) {
             props.dispatch(setAlert('Experience addtion failed', "FAILED", 4000))
         }
