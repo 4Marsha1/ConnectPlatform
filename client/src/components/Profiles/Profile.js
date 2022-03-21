@@ -1,6 +1,13 @@
 import { Link } from 'react-router-dom'
 import styles from './Profiles.module.css'
 import Moment from 'react-moment'
+import { ReactComponent as Website } from '../../icons/website.svg'
+import { ReactComponent as Facebook } from '../../icons/facebook.svg'
+import { ReactComponent as Twitter } from '../../icons/twitter.svg'
+import { ReactComponent as Instagram } from '../../icons/instagram.svg'
+import { ReactComponent as Linkedin } from '../../icons/linkedin.svg'
+import { ReactComponent as Youtube } from '../../icons/youtube.svg'
+import { ReactComponent as Point } from '../../icons/point.svg'
 
 const Profile = ({ auth, profile, repos }) => {
     return (
@@ -26,15 +33,15 @@ const Profile = ({ auth, profile, repos }) => {
                             <span className={styles['status']}>{profile.status} {profile.company && <span>{profile.company}</span>}</span>
                             <span className={styles['location']}>{profile.location && <span>{profile.location}</span>}</span>
                             <div className={styles['links']}>
-                                {profile.website && <a href={profile.website} target="_blank">Website</a>}
+                                {profile.website && <a href={profile.website} target="_blank"><Website className={styles['svg']} /></a>}
                                 {
                                     profile.social ?
                                         <>
-                                            {profile.social.facebook && <a href={profile.social.facebook} target="_blank">Facebook</a>}
-                                            {profile.social.twitter && <a href={profile.social.twitter} target="_blank">Twitter</a>}
-                                            {profile.social.instagram && <a href={profile.social.instagram} target="_blank">Instagram</a>}
-                                            {profile.social.linkedin && <a href={profile.social.linkedin} target="_blank">LinkedIn</a>}
-                                            {profile.social.youtube && <a href={profile.social.youtube} target="_blank">Youtube</a>}
+                                            {profile.social.facebook && <a href={profile.social.facebook} target="_blank"> <Facebook className={styles['svg']} /> </a>}
+                                            {profile.social.twitter && <a href={profile.social.twitter} target="_blank"><Twitter className={styles['svg']} /></a>}
+                                            {profile.social.instagram && <a href={profile.social.instagram} target="_blank"><Instagram className={styles['svg']} /></a>}
+                                            {profile.social.linkedin && <a href={profile.social.linkedin} target="_blank"><Linkedin className={styles['svg']} /></a>}
+                                            {profile.social.youtube && <a href={profile.social.youtube} target="_blank"><Youtube className={styles['svg']} /></a>}
                                         </> : null
                                 }
                             </div>
@@ -52,7 +59,7 @@ const Profile = ({ auth, profile, repos }) => {
                             <span className={styles['skillset']}>
                                 {profile.skills && profile.skills.map((skill, idx) => {
                                     return <span className={styles['sk']} key={idx}>
-                                        {skill}
+                                        <Point className={styles['svg']} />{skill}
                                     </span>
                                 })}
                             </span>
