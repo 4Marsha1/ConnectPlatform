@@ -1,11 +1,11 @@
 const express = require("express");
 const colors = require('colors');
-const dotenv = require('dotenv').config();
 const cors = require('cors');
+const config = require('config')
 const connectDB = require('./config/db');
 const errorHandler = require('./middlewares/errorMiddleware')
 
-const port = process.env.NODE_ENV === 'production' ? process.env.PORT : 5000;
+const PORT = process.env.PORT || 5000;
 const app = express();
 
 // CONNECT TO DATABASE
@@ -29,4 +29,4 @@ app.use('/api/posts/', require('./routes/postRoutes'));
 app.use(errorHandler);
 
 // SETTING APP
-app.listen(port, () => console.log(`Server Listening at port ${port}`.cyan.underline));
+app.listen(PORT, () => console.log(`Server Listening at PORT ${PORT}`.cyan.underline));

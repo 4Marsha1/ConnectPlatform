@@ -1,5 +1,6 @@
 const asyncHandler = require('express-async-handler');
 const request = require('request');
+const config = require('config')
 const Profile = require('../models/profileModel');
 const User = require('../models/userModel');
 const Post = require("../models/postModel");
@@ -214,8 +215,8 @@ const deleteProfile = asyncHandler(async (req, res) => {
 const getGithubRepos = asyncHandler(async (req, res) => {
     try {
         const options = {
-            uri: `https://api.github.com/users/${req.params.username}/repos?per_page=5&sort=created:asc&client_id=${process.env.GITHUB_CLIENTID
-                }&client_secret=${process.env.GITHUB_SECRET}`,
+            uri: `https://api.github.com/users/${req.params.username}/repos?per_page=5&sort=created:asc&client_id=${config.get("GITHUB_CLIENTID")
+                }&client_secret=${config.get("GITHUB_SECRET")}`,
             method: 'GET',
             headers: { 'user-agent': 'nodejs' }
         }

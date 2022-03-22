@@ -2,6 +2,7 @@ const asyncHandler = require('express-async-handler');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const gravatar = require('gravatar');
+const config = require('config')
 const User = require('../models/userModel');
 
 // @Route           GET /api/users/
@@ -92,7 +93,7 @@ const loginUser = asyncHandler(async (req, res) => {
 })
 
 const generateToken = (id) => {
-    return jwt.sign({ id }, process.env.JWT_SECRET, { expiresIn: '60d' })
+    return jwt.sign({ id }, config.get("JWT_SECRET"), { expiresIn: '60d' })
 }
 
 module.exports = {

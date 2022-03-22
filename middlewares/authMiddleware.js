@@ -1,6 +1,7 @@
 const asyncHandler = require('express-async-handler');
 const jwt = require('jsonwebtoken');
 const User = require('../models/userModel');
+const config = require('config')
 
 const authMiddleware = asyncHandler(async (req, res, next) => {
     let token;
@@ -12,7 +13,7 @@ const authMiddleware = asyncHandler(async (req, res, next) => {
             res.status(404);
             throw new Error('User Unauthorized')
         }
-        const decoded = jwt.verify(token, process.env.JWT_SECRET);
+        const decoded = jwt.verify(token, config.get("JWT_SECRET"));
         req.user = await User.findById(decoded.id);
         if (!req.user) {
             res.status(404);
