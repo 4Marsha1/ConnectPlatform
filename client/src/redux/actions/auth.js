@@ -1,4 +1,5 @@
 import api from '../../api'
+import { URL_PREFIX } from '../../constants'
 import { CLEAR_PROFILE, LOAD_FAILED, LOAD_INITIATED, LOAD_SUCCESS, LOGIN_FAILED, LOGIN_INITIATED, LOGIN_SUCCESS, LOGOUT_USER, REGISTER_FAILED, REGISTER_INITIATED, REGISTER_SUCCESS } from './types'
 
 export const registerUser = (name, email, password) => async dispatch => {
@@ -16,7 +17,7 @@ export const registerUser = (name, email, password) => async dispatch => {
         }
     }
     try {
-        const res = await api.post("/api/users/", data, config);
+        const res = await api.post(URL_PREFIX + "/api/users/", data, config);
         const payload = await res.data;
         dispatch({
             type: REGISTER_SUCCESS,
@@ -43,7 +44,7 @@ export const loginUser = (email, password) => async dispatch => {
         }
     }
     try {
-        const res = await api.post("/api/users/login", data, config);
+        const res = await api.post(URL_PREFIX + "/api/users/login", data, config);
         const payload = await res.data;
         dispatch({
             type: LOGIN_SUCCESS,
@@ -67,7 +68,7 @@ export const loadUser = (token) => async dispatch => {
         }
     }
     try {
-        const res = await api.get("/api/users/", config);
+        const res = await api.get(URL_PREFIX + "/api/users/", config);
         const payload = await res.data;
         dispatch({
             type: LOAD_SUCCESS,

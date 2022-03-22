@@ -1,4 +1,5 @@
 import api from "../../api"
+import { URL_PREFIX } from "../../constants"
 import {
     ADD_EDUCATION_FAILED, ADD_EDUCATION_INITIATED, ADD_EDUCATION_SUCCESS, ADD_EXPERIENCE_FAILED,
     ADD_EXPERIENCE_INITIATED, ADD_EXPERIENCE_SUCCESS, CREATE_PROFILE_FAILED, CREATE_PROFILE_INITIATED, CREATE_PROFILE_SUCCESS,
@@ -20,7 +21,7 @@ export const loadProfile = (token) => async dispatch => {
         }
     }
     try {
-        const res = await api.get('http://localhost:5000/api/profile', config)
+        const res = await api.get(URL_PREFIX + '/api/profile', config)
         dispatch({
             type: LOAD_PROFILE_SUCCESS,
             payload: res.data
@@ -42,7 +43,7 @@ export const getAllProfiles = () => async dispatch => {
         }
     }
     try {
-        const res = await api.get('http://localhost:5000/api/profile/all', config)
+        const res = await api.get(URL_PREFIX + '/api/profile/all', config)
         dispatch({
             type: GET_ALL_PROFILES_SUCCESS,
             payload: res.data
@@ -64,7 +65,7 @@ export const getProfileById = (id) => async dispatch => {
         }
     }
     try {
-        const res = await api.get(`http://localhost:5000/api/profile/${id}`, config)
+        const res = await api.get(`${URL_PREFIX}/api/profile/${id}`, config)
         dispatch({
             type: GET_PROFILE_BY_ID_SUCCESS,
             payload: res.data
@@ -86,7 +87,7 @@ export const getGithubRepos = (username) => async dispatch => {
         }
     }
     try {
-        const res = await api.get(`http://localhost:5000/api/profile/github/${username}`, config)
+        const res = await api.get(`${URL_PREFIX}/api/profile/github/${username}`, config)
         dispatch({
             type: GET_GITHUB_REPOS_SUCCESS,
             payload: res.data
@@ -114,7 +115,7 @@ export const createProfile = (company, website, location, status, skills, github
             bio, twitter, facebook, linkedin, youtube, instagram,
         })
         try {
-            const res = await api.post('http://localhost:5000/api/profile', body, config)
+            const res = await api.post(URL_PREFIX + '/api/profile', body, config)
             dispatch({
                 type: CREATE_PROFILE_SUCCESS,
                 payload: res.data
@@ -140,7 +141,7 @@ export const addExperience = (title, company, location, from, to, current, descr
         title, company, location, from, to, current, description
     })
     try {
-        const res = await api.post('http://localhost:5000/api/profile/experiences', body, config)
+        const res = await api.post(URL_PREFIX + '/api/profile/experiences', body, config)
         dispatch({
             type: ADD_EXPERIENCE_SUCCESS,
             payload: res.data
@@ -166,7 +167,7 @@ export const addEducation = (school, degree, fieldofstudy, from, to, current, de
         school, degree, fieldofstudy, from, to, current, description
     })
     try {
-        const res = await api.post('http://localhost:5000/api/profile/education', body, config)
+        const res = await api.post(URL_PREFIX + '/api/profile/education', body, config)
         dispatch({
             type: ADD_EDUCATION_SUCCESS,
             payload: res.data
@@ -189,7 +190,7 @@ export const deleteExperience = (id, token) => async dispatch => {
         }
     }
     try {
-        const res = await api.delete(`http://localhost:5000/api/profile/experiences/${id}`, config)
+        const res = await api.delete(`${URL_PREFIX}/api/profile/experiences/${id}`, config)
         dispatch({
             type: DELETE_EXPERIENCE_SUCCESS,
             payload: res.data
@@ -212,7 +213,7 @@ export const deleteEducation = (id, token) => async dispatch => {
         }
     }
     try {
-        const res = await api.delete(`http://localhost:5000/api/profile/education/${id}`, config)
+        const res = await api.delete(`${URL_PREFIX}/api/profile/education/${id}`, config)
         dispatch({
             type: DELETE_EDUCATION_SUCCESS,
             payload: res.data
@@ -236,7 +237,7 @@ export const deleteAccount = (token) => async dispatch => {
             }
         }
         try {
-            await api.delete('http://localhost:5000/api/profile/', config)
+            await api.delete(URL_PREFIX + '/api/profile/', config)
             dispatch({
                 type: CLEAR_PROFILE
             })

@@ -1,4 +1,5 @@
 import api from "../../api"
+import { URL_PREFIX } from "../../constants"
 import {
     ADD_LIKE_FAILED, ADD_LIKE_INITIATED, ADD_LIKE_SUCCESS, DELETE_LIKE_FAILED, DELETE_LIKE_INITIATED,
     DELETE_LIKE_SUCCESS, GET_POSTS_FAILED, GET_POSTS_INITIATED, GET_POSTS_SUCCESS
@@ -15,7 +16,7 @@ export const getPosts = (token) => async dispatch => {
         }
     }
     try {
-        const res = await api.get('/api/posts/', config);
+        const res = await api.get(URL_PREFIX + '/api/posts/', config);
         dispatch({
             type: GET_POSTS_SUCCESS,
             payload: res.data
@@ -39,7 +40,7 @@ export const addLike = (token, id) => async dispatch => {
         }
     }
     try {
-        const res = await api.post(`/api/posts/like/${id}`, config)
+        const res = await api.post(`${URL_PREFIX}/api/posts/like/${id}`, config)
         dispatch({
             type: ADD_LIKE_SUCCESS,
             payload: res.data
@@ -63,7 +64,7 @@ export const deleteLike = (token, id) => async dispatch => {
         }
     }
     try {
-        const res = await api.delete(`/api/posts/like/${id}`, config)
+        const res = await api.delete(`${URL_PREFIX}/api/posts/like/${id}`, config)
         dispatch({
             type: DELETE_LIKE_SUCCESS,
             payload: res.data
